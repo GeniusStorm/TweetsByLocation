@@ -1,8 +1,8 @@
-development:
+development:  &defaults
   # Configure available database sessions. (required)
   sessions:
     # Defines the default session. (required)
-    default:
+    default:  &defaults
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
       database: tweets_by_location_development
@@ -44,14 +44,14 @@ development:
 
     # Preload all models in development, needed when models use
     # inheritance. (default: false)
-    # preload_models: false
+    preload_models: true
 
     # Protect id and type from mass assignment. (default: true)
     # protect_sensitive_fields: true
 
     # Raise an error when performing a #find and the document is not found.
     # (default: true)
-    # raise_not_found_error: true
+    raise_not_found_error: false
 
     # Raise an error when defining a scope with the same name as an
     # existing method. (default: false)
@@ -67,14 +67,22 @@ development:
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
 test:
+  <<: *defaults
   sessions:
     default:
+      <<: *defaults
       database: tweets_by_location_test
+<% if ENV['MONGOHQ_URL'] %>
+  <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
+production:
+  <<: *defaults
+  sessions:
+    default:
+      <<: *default_session
+      database: <%= uri.path.sub('/','') %>
+      username: <%= uri.user %>
+      password: <%= uri.password %>
       hosts:
-        - localhost:27017
-      options:
-        consistency: :strong
-        # In the test environment we lower the retries and retry interval to
-        # low amounts for fast failures.
-        max_retries: 1
-        retry_interval: 0
+        - <%= uri.host %>:<%= uri.port %>
+<% end %>
+
