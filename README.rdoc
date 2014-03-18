@@ -1,0 +1,24 @@
+== Tweets By Location
+
+A simple Rails App that shows tweets from a location specified by the user
+
+
+== API's Used
+
+1. Twitter Streaming API
+
+
+== Technology Stack
+
+1.Ruby 2
+2.Rails 3
+
+== Testing Stack
+1.Rspec 
+2.Capybara
+
+
+==Database Used
+
+1.MongoDB 
+2.Mongoid 3
