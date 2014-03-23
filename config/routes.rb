@@ -3,7 +3,7 @@ TweetsByLocation::Application.routes.draw do
 
 
 
-  root :to => 'tweets#index'
+  root :to => 'tweets#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

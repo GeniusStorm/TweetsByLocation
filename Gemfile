@@ -14,7 +14,9 @@ gem 'mongoid', '~> 3.1.6'
 
 gem 'bson_ext'
 
-gem "tweetstream"
+gem "tweetstream", '2.6.0'
+
+gem "yajl-ruby"
 
 
 group :development, :test do
@@ -24,8 +26,7 @@ group :development, :test do
 end
 
 group :production do
-  # gems specifically for Heroku go here
-  gem "pg" #for heroku
+  gem "pg" 
 end
 
-ruby '2.0.0' #for heroku
+ruby '2.0.0' 
