@@ -5,5 +5,4 @@ namespace :tweets do
   task :seedstream => :environment do
   	TweetLocator.fetch_and_save_tweets
   end
-
 end
