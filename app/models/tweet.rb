@@ -6,5 +6,7 @@ class Tweet
   	field :user_handle , type: String
   	
 	index({ location: "2d" }, { min: -200, max: 200 })
-   
+
+	attr_accessor :latitude, :longitude
+    
 end

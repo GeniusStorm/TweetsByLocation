@@ -1,9 +1,8 @@
 TweetsByLocation::Application.routes.draw do
-  resources :tweets
 
+  root :to => 'tweets#index'
 
-
-  root :to => 'tweets#new'
+   match 'tweets/find' => "tweets#find"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

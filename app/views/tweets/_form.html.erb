@@ -1,25 +1,15 @@
-<%= form_for(@tweet) do |f| %>
-  <% if @tweet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+<%= form_tag('/tweets/find' , :method => "post")  do  %>
 
-      <ul>
-      <% @tweet.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<div><b>Please enter the coordinates from where you wish to find the tweets</b></div>
   <div class="field">
-    <%= f.label :tweets %><br />
-    <%= f.text_area :tweets %>
+    <%= label_tag :longitude %><br />
+    <%= text_field_tag :longitude %>
   </div>
   <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= label_tag :latitude %><br />
+    <%= text_field_tag :latitude %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag 'Find Tweets' %>
   </div>
 <% end %>
