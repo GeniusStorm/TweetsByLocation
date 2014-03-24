@@ -1,0 +1,15 @@
+<div><b>Listing Tweets</b></div>
+<% if @closest_tweets.present? 
+		@closest_tweets.each do |tweet|
+%>
+	<table>
+		<tr>
+			<td><%= image_tag(tweet.profile_pic_url) %></td>
+			<td><%= tweet.status %></td>
+		<tr>
+	</table>
+<% end
+else %>
+	<div>No tweets were found !!  Try some different coordinates</div>
+<% end %>
+

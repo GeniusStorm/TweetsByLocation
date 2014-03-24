@@ -20,7 +20,7 @@ gem "yajl-ruby"
 
 
 group :development, :test do
-  gem 'sqlite3' #heroku hates sqlite
+  gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara', '~> 2.0.2'
 end

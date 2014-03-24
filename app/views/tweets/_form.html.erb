@@ -1,6 +1,12 @@
 <%= form_tag('/tweets/find' , :method => "post")  do  %>
 
 <div><b>Please enter the coordinates from where you wish to find the tweets</b></div>
+
+<% if tweets && tweets.errors.any? 
+   tweets.errors.full_messages.each do |message| %>
+      <div style="color:#FF0000"><%= message %></div>
+ <%  end
+end %>
   <div class="field">
     <%= label_tag :longitude %><br />
     <%= text_field_tag :longitude %>
@@ -12,4 +18,5 @@
   <div class="actions">
     <%= submit_tag 'Find Tweets' %>
   </div>
+
 <% end %>

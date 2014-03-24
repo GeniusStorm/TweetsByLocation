@@ -9,4 +9,17 @@ class Tweet
 
 	attr_accessor :latitude, :longitude
     
+
+	def get_closest_tweets
+       Tweet.where(:location.near => [longitude, latitude]).limit(50).to_a
+	end
+
+	def valid_coordinates? 
+		if [longitude, latitude].map(&:present?).include?(false)
+			errors.add(:base , "Latitude/Longitude must be present") 
+	    	return false
+		else
+			return true
+		end	
+	end
 end

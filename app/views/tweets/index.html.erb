@@ -1,3 +1,6 @@
 <h1>TweetLocator</h1>
+<%= render 'form' , :tweets => @tweets %>
 
-<%= render 'form' %>
+<% unless @tweets.errors.any? %>
+  <%= render 'tweets_by_location' , :closest_tweets => @closest_tweets  %>
+<% end %>
