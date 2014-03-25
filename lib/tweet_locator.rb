@@ -31,9 +31,24 @@ class TweetLocator
 			    profile_pic_url:  tweet['user']['profile_image_url'],
 				user_handle: tweet['user']['screen_name']
 			})
-		end
-		
+		end	
 	end
+
+	#fetch trending tweets by location and trends
+	def self.trends_by_location(hashtag, latitude, longitude)
+		@tweets =[]
+	  	TweetStream::Client.new.filter({:locations => '-80.29,32.57,-79.56,33.09', :track => ["google"]}) do |tweet|
+	  		if tweet['geo']
+	  		@tweets << Tweet.new(location: tweet['geo']['coordinates'],
+								 status: tweet['text'],
+				                 profile_pic_url:  tweet['user']['profile_image_url'],
+					             user_handle: tweet['user']['screen_name'])
+
+	  		return @tweets if @tweets.size == 3
+	  		end
+		end
+	end
+
 end
 
 
