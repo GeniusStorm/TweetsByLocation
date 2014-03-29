@@ -23,10 +23,9 @@ class Tweet
 	def valid_coordinates?
 		if [longitude, latitude].map(&:present?).include?(false) || coordinates_are_integer?
 			errors.add(:base , "The coordinates are invalid") 
-	    	return false
-	    else
-	    	return true
-		end			
+	    	return false 	
+		end	
+		return true		
 	end
 
 	def coordinates_are_integer?
@@ -39,5 +38,5 @@ class Tweet
 
 	def tweets_by_trends
 		TweetLocator.trends_by_location(hashtag, latitude, longitude)
-	end
+    end
 end
